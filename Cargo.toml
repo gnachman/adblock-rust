@@ -54,6 +54,7 @@ sha2 = "=0.9.9"
 
 [lib]
 bench = false
+crate-type = ["staticlib", "rlib"]
 
 [[bench]]
 name = "bench_regex"
@@ -101,6 +102,7 @@ css-validation = ["cssparser", "selectors"]
 content-blocking = []
 embedded-domain-resolver = ["addr"] # Requires setting an external domain resolver if disabled.
 resource-assembler = []
+ffi = []
 
 [lints.clippy]
 len_zero = "allow"

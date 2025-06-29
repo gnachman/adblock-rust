@@ -13,3 +13,5 @@ js/artifacts.json
 ignored/
 NDK/
 .cargo
+include
+lib

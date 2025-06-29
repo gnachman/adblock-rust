@@ -34,6 +34,9 @@ pub mod url_parser;
 #[doc(hidden)]
 pub mod utils;
 
+#[cfg(feature = "ffi")]
+pub mod ffi;
+
 #[doc(inline)]
 pub use engine::Engine;
 #[doc(inline)]
