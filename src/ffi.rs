@@ -90,7 +90,7 @@ pub extern "C" fn engine_match(
     };
     
     let blocker_result = engine.check_network_request(&request);
-    blocker_result.matched
+    blocker_result.matched && blocker_result.exception.is_none()
 }
 
 #[no_mangle]
