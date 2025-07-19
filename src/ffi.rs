@@ -55,8 +55,9 @@ pub extern "C" fn engine_match(
     url: *const c_char,
     host: *const c_char,
     tab_host: *const c_char,
+    request_type: *const c_char,
 ) -> bool {
-    if engine.is_null() || url.is_null() || host.is_null() || tab_host.is_null() {
+    if engine.is_null() || url.is_null() || host.is_null() || tab_host.is_null() || request_type.is_null() {
         return false;
     }
     
@@ -83,8 +84,15 @@ pub extern "C" fn engine_match(
         }
     };
     
+    let request_type_str = unsafe {
+        match CStr::from_ptr(request_type).to_str() {
+            Ok(s) => s,
+            Err(_) => return false,
+        }
+    };
+    
     let source_url = format!("https://{}", tab_host_str);
-    let request = match crate::request::Request::new(url_str, &source_url, "document") {
+    let request = match crate::request::Request::new(url_str, &source_url, request_type_str) {
         Ok(r) => r,
         Err(_) => return false,
     };
